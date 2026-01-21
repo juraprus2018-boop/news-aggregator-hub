@@ -20,6 +20,8 @@ export function useArticles(options: UseArticlesOptions = {}) {
           *,
           source:sources(id, name, url)
         `)
+        // Sort by breaking first, then by published date
+        .order('is_breaking', { ascending: false })
         .order('published_at', { ascending: false, nullsFirst: false })
         .limit(limit)
 
@@ -36,7 +38,8 @@ export function useArticles(options: UseArticlesOptions = {}) {
       if (error) throw error
       return data as (Article & { source: { id: string; name: string; url: string } })[]
     },
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: 1000 * 60 * 2, // 2 minutes - refresh more often
+    refetchInterval: 1000 * 60 * 2, // Auto-refetch every 2 minutes
   })
 }
 
@@ -57,7 +60,8 @@ export function useBreakingNews() {
       if (error) throw error
       return data as (Article & { source: { id: string; name: string; url: string } })[]
     },
-    staleTime: 1000 * 60, // 1 minute
+    staleTime: 1000 * 30, // 30 seconds
+    refetchInterval: 1000 * 30, // Auto-refetch every 30 seconds for breaking news
   })
 }
 
@@ -72,12 +76,15 @@ export function useHeroArticles() {
           source:sources(id, name, url)
         `)
         .not('image_url', 'is', null)
+        // Prioritize breaking news in hero section
+        .order('is_breaking', { ascending: false })
         .order('published_at', { ascending: false, nullsFirst: false })
         .limit(3)
 
       if (error) throw error
       return data as (Article & { source: { id: string; name: string; url: string } })[]
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 2,
+    refetchInterval: 1000 * 60 * 2, // Auto-refetch every 2 minutes
   })
 }
