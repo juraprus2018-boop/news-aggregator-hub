@@ -6,10 +6,11 @@ import type { Category } from '@/types/news'
 interface ArticleGridProps {
   category: Category
   region?: string
+  search?: string
 }
 
-export function ArticleGrid({ category, region }: ArticleGridProps) {
-  const { data: articles, isLoading, error } = useArticles({ category, region })
+export function ArticleGrid({ category, region, search }: ArticleGridProps) {
+  const { data: articles, isLoading, error } = useArticles({ category, region, search })
 
   if (isLoading) {
     return (

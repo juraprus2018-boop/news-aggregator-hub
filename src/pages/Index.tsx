@@ -10,6 +10,7 @@ const Index = () => {
   const { suggestedCategory, isLoading: locationLoading } = useUserLocation()
   const [category, setCategory] = useState<Category | null>(null)
   const [region, setRegion] = useState<string | undefined>(undefined)
+  const [search, setSearch] = useState('')
 
   // Set initial category based on detected location
   useEffect(() => {
@@ -28,10 +29,12 @@ const Index = () => {
         <FilterBar
           selectedCategory={activeCategory}
           selectedRegion={region}
+          searchQuery={search}
           onCategoryChange={setCategory}
           onRegionChange={setRegion}
+          onSearchChange={setSearch}
         />
-        <ArticleGrid category={activeCategory} region={region} />
+        <ArticleGrid category={activeCategory} region={region} search={search} />
       </main>
       <footer className="border-t border-border py-8 mt-12">
         <div className="container text-center text-sm text-muted-foreground">
