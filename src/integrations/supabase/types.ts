@@ -14,7 +14,175 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_users: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      articles: {
+        Row: {
+          category: string
+          content: string | null
+          created_at: string
+          description: string | null
+          detected_regions: string[] | null
+          id: string
+          image_url: string | null
+          is_breaking: boolean
+          published_at: string | null
+          source_id: string
+          title: string
+          url: string
+        }
+        Insert: {
+          category?: string
+          content?: string | null
+          created_at?: string
+          description?: string | null
+          detected_regions?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_breaking?: boolean
+          published_at?: string | null
+          source_id: string
+          title: string
+          url: string
+        }
+        Update: {
+          category?: string
+          content?: string | null
+          created_at?: string
+          description?: string | null
+          detected_regions?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_breaking?: boolean
+          published_at?: string | null
+          source_id?: string
+          title?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "articles_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crawl_logs: {
+        Row: {
+          articles_added: number | null
+          articles_found: number | null
+          created_at: string
+          error_message: string | null
+          id: string
+          source_id: string | null
+          status: string
+        }
+        Insert: {
+          articles_added?: number | null
+          articles_found?: number | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          source_id?: string | null
+          status: string
+        }
+        Update: {
+          articles_added?: number | null
+          articles_found?: number | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          source_id?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crawl_logs_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      regions: {
+        Row: {
+          created_at: string
+          id: string
+          keywords: string[]
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          keywords?: string[]
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          keywords?: string[]
+          name?: string
+        }
+        Relationships: []
+      }
+      sources: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          is_active: boolean
+          last_crawled_at: string | null
+          name: string
+          rss_url: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_crawled_at?: string | null
+          name: string
+          rss_url: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_crawled_at?: string | null
+          name?: string
+          rss_url?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
