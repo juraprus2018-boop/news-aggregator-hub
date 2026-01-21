@@ -95,7 +95,11 @@ export default function AdminLogin() {
               {isLoading ? 'Inloggen...' : 'Inloggen'}
             </Button>
           </form>
-          <div className="mt-6 text-center">
+          <div className="mt-6 text-center space-y-2">
+            <Button variant="link" onClick={() => navigate('/admin/register')}>
+              Nog geen account? Registreren
+            </Button>
+            <br />
             <Button variant="link" onClick={() => navigate('/')}>
               ← Terug naar nieuws
             </Button>
