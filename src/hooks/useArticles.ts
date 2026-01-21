@@ -5,14 +5,15 @@ import type { Article, Category } from '@/types/news'
 interface UseArticlesOptions {
   category?: Category
   region?: string
+  search?: string
   limit?: number
 }
 
 export function useArticles(options: UseArticlesOptions = {}) {
-  const { category = 'all', region, limit = 50 } = options
+  const { category = 'all', region, search, limit = 50 } = options
 
   return useQuery({
-    queryKey: ['articles', category, region, limit],
+    queryKey: ['articles', category, region, search, limit],
     queryFn: async () => {
       let query = supabase
         .from('articles')
@@ -31,6 +32,11 @@ export function useArticles(options: UseArticlesOptions = {}) {
 
       if (region) {
         query = query.contains('detected_regions', [region])
+      }
+
+      if (search && search.trim()) {
+        const searchTerm = `%${search.trim()}%`
+        query = query.or(`title.ilike.${searchTerm},description.ilike.${searchTerm}`)
       }
 
       const { data, error } = await query
