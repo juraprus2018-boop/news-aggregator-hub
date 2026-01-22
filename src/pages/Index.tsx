@@ -3,6 +3,7 @@ import { Header } from '@/components/news/Header'
 import { HeroSection } from '@/components/news/HeroSection'
 import { FilterBar } from '@/components/news/FilterBar'
 import { ArticleGrid } from '@/components/news/ArticleGrid'
+import { Footer } from '@/components/layout/Footer'
 import { useUserLocation } from '@/hooks/useUserLocation'
 import type { Category } from '@/types/news'
 
@@ -36,12 +37,7 @@ const Index = () => {
         />
         <ArticleGrid category={activeCategory} region={region} search={search} />
       </main>
-      <footer className="border-t border-border py-8 mt-12">
-        <div className="container text-center text-sm text-muted-foreground">
-          <p>© 2025 NewsFlow — Al het nieuws, één plek</p>
-          <p className="mt-1">Artikelen worden automatisch verzameld via RSS feeds</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

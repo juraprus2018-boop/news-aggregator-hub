@@ -8,6 +8,7 @@ import { SEOHead } from '@/components/seo/SEOHead'
 import { ArticleJsonLd } from '@/components/seo/ArticleJsonLd'
 import { RelatedArticles } from '@/components/news/RelatedArticles'
 import { ShareButtons } from '@/components/news/ShareButtons'
+import { Footer } from '@/components/layout/Footer'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -245,11 +246,7 @@ export default function Article() {
         </div>
       </main>
 
-      <footer className="border-t border-border py-8 mt-12">
-        <div className="container text-center text-sm text-muted-foreground">
-          <p>© 2025 NewsFlow — Al het nieuws, één plek</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

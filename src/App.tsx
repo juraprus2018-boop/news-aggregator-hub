@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import Article from "./pages/Article";
+import Privacy from "./pages/Privacy";
+import Disclaimer from "./pages/Disclaimer";
+import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
 import AdminRegister from "./pages/AdminRegister";
@@ -23,6 +26,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/artikel/:id" element={<Article />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/register" element={<AdminRegister />} />
