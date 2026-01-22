@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { formatDistanceToNow } from 'date-fns'
 import { nl } from 'date-fns/locale'
@@ -5,6 +6,8 @@ import { ChevronRight, MapPin } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import type { Article } from '@/types/news'
+import placeholderNews from '@/assets/placeholder-news.jpg'
+
 const categoryColors: Record<string, string> = {
   nederland: 'bg-orange-500/90 hover:bg-orange-500',
   internationaal: 'bg-blue-500/90 hover:bg-blue-500',
@@ -17,33 +20,30 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ article }: ArticleCardProps) {
+  const [imgError, setImgError] = useState(false)
+  const imageSrc = imgError || !article.image_url ? placeholderNews : article.image_url
+
   return (
     <Link
       to={`/artikel/${article.slug || article.id}`}
       className="group block"
     >
       <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card border-border/50">
-        {article.image_url && (
-          <div className="relative h-48 overflow-hidden">
-            <img
-              src={article.image_url}
-              alt={article.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-            <div className="absolute top-3 left-3">
-              <Badge className={categoryColors[article.category] || categoryColors.algemeen}>
-                {article.category}
-              </Badge>
-            </div>
-          </div>
-        )}
-        <div className="p-4">
-          {!article.image_url && (
-            <Badge className={`${categoryColors[article.category] || categoryColors.algemeen} mb-3`}>
+        <div className="relative h-48 overflow-hidden">
+          <img
+            src={imageSrc}
+            alt={article.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            onError={() => setImgError(true)}
+          />
+          <div className="absolute top-3 left-3">
+            <Badge className={categoryColors[article.category] || categoryColors.algemeen}>
               {article.category}
             </Badge>
-          )}
+          </div>
+        </div>
+        <div className="p-4">
           <h3 className="font-bold text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
             {article.title}
           </h3>
