@@ -13,10 +13,11 @@ const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [search, setSearch] = useState('')
 
-  // Get category, region and search from URL params
+  // Get category, region, search and filter from URL params
   const urlCategory = searchParams.get('category') as Category | null
   const urlRegion = searchParams.get('region') || undefined
   const urlSearch = searchParams.get('search') || ''
+  const isTop24 = searchParams.get('filter') === 'top24'
 
   // Sync search state with URL
   useEffect(() => {
@@ -67,7 +68,7 @@ const Index = () => {
           onRegionChange={handleRegionChange}
           onSearchChange={setSearch}
         />
-        <ArticleGrid category={activeCategory} region={urlRegion} search={search} />
+        <ArticleGrid category={activeCategory} region={urlRegion} search={search} top24={isTop24} />
       </div>
       <Footer />
     </MainLayout>

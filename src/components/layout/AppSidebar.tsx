@@ -1,5 +1,5 @@
-import { useSearchParams } from 'react-router-dom'
-import { Globe, Laptop, MapPin, Newspaper, ChevronDown } from 'lucide-react'
+import { useSearchParams, Link } from 'react-router-dom'
+import { Globe, Laptop, MapPin, Newspaper, ChevronDown, Trophy, TrendingUp, Clapperboard, Clock } from 'lucide-react'
 import { useRegions } from '@/hooks/useRegions'
 import { NavLink } from '@/components/NavLink'
 import {
@@ -14,6 +14,9 @@ const categories = [
   { value: 'nederland', label: 'Nederland', icon: MapPin },
   { value: 'internationaal', label: 'Internationaal', icon: Globe },
   { value: 'tech', label: 'Tech', icon: Laptop },
+  { value: 'sport', label: 'Sport', icon: Trophy },
+  { value: 'economie', label: 'Economie', icon: TrendingUp },
+  { value: 'entertainment', label: 'Entertainment', icon: Clapperboard },
 ]
 
 export function AppSidebar() {
@@ -26,6 +29,20 @@ export function AppSidebar() {
   return (
     <aside className="hidden md:block w-56 shrink-0">
       <div className="sticky top-20 space-y-6">
+        {/* Top 24 uur link */}
+        <Link
+          to="/?filter=top24"
+          className={cn(
+            'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm font-medium',
+            searchParams.get('filter') === 'top24'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-muted/50 hover:bg-muted text-foreground'
+          )}
+        >
+          <Clock className="w-4 h-4 shrink-0" />
+          <span>Top afgelopen 24 uur</span>
+        </Link>
+
         {/* Categories */}
         <div>
           <h3 className="text-xs uppercase tracking-wider text-muted-foreground font-semibold px-3 mb-2">

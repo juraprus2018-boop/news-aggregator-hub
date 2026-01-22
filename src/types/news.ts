@@ -44,4 +44,4 @@ export interface CrawlLog {
   created_at: string
 }
 
-export type Category = 'all' | 'nederland' | 'internationaal' | 'tech'
+export type Category = 'all' | 'nederland' | 'internationaal' | 'tech' | 'sport' | 'economie' | 'entertainment'

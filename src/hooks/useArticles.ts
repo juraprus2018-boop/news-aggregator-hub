@@ -7,15 +7,16 @@ interface UseArticlesOptions {
   region?: string
   search?: string
   limit?: number
+  top24?: boolean
 }
 
 type ArticleWithSource = Article & { source: { id: string; name: string; url: string } }
 
 export function useArticles(options: UseArticlesOptions = {}) {
-  const { category = 'all', region, search, limit = 50 } = options
+  const { category = 'all', region, search, limit = 50, top24 = false } = options
 
   return useQuery({
-    queryKey: ['articles', category, region, search, limit],
+    queryKey: ['articles', category, region, search, limit, top24],
     queryFn: async () => {
       let query = supabase
         .from('articles')
@@ -23,10 +24,22 @@ export function useArticles(options: UseArticlesOptions = {}) {
           *,
           source:sources(id, name, url)
         `)
+
+      // Filter for top 24 hours
+      if (top24) {
+        const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+        query = query
+          .gte('published_at', twentyFourHoursAgo)
+          .order('is_breaking', { ascending: false })
+          .order('published_at', { ascending: false, nullsFirst: false })
+      } else {
         // Sort by breaking first, then by published date
-        .order('is_breaking', { ascending: false })
-        .order('published_at', { ascending: false, nullsFirst: false })
-        .limit(limit)
+        query = query
+          .order('is_breaking', { ascending: false })
+          .order('published_at', { ascending: false, nullsFirst: false })
+      }
+
+      query = query.limit(limit)
 
       if (category !== 'all') {
         query = query.eq('category', category)
