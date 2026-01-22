@@ -7,10 +7,11 @@ interface ArticleGridProps {
   category: Category
   region?: string
   search?: string
+  top24?: boolean
 }
 
-export function ArticleGrid({ category, region, search }: ArticleGridProps) {
-  const { data: articles, isLoading, error } = useArticles({ category, region, search })
+export function ArticleGrid({ category, region, search, top24 }: ArticleGridProps) {
+  const { data: articles, isLoading, error } = useArticles({ category, region, search, top24 })
 
   if (isLoading) {
     return (
