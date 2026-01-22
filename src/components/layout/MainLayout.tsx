@@ -16,8 +16,10 @@ export function MainLayout({ children, showSidebar = true }: MainLayoutProps) {
       {/* Content area with sidebar */}
       {showSidebar ? (
         <SidebarProvider>
-          <div className="container flex flex-1 py-6 gap-6">
-            <AppSidebar />
+          <div className="container flex flex-1 py-8 gap-8">
+            <div className="sticky top-20 h-fit">
+              <AppSidebar />
+            </div>
             <SidebarInset className="flex-1 min-w-0">
               {children}
             </SidebarInset>
@@ -28,7 +30,7 @@ export function MainLayout({ children, showSidebar = true }: MainLayoutProps) {
           </div>
         </SidebarProvider>
       ) : (
-        <div className="container flex-1 py-6">
+        <div className="container flex-1 py-8">
           {children}
         </div>
       )}
