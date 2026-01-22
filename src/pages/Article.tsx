@@ -170,54 +170,61 @@ export default function Article() {
           </div>
         )}
 
-        {/* Hero Image */}
+        {/* Hero Image with source attribution */}
         {article.image_url && (
-          <div className="relative rounded-xl overflow-hidden mb-8">
+          <div className="relative rounded-xl overflow-hidden mb-6">
             <img
               src={article.image_url}
               alt={article.title}
-              className="w-full h-auto max-h-[500px] object-cover"
+              className="w-full h-auto max-h-[400px] object-cover"
             />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+              <p className="text-white/80 text-xs">
+                📷 Afbeelding: {article.source?.name}
+              </p>
+            </div>
           </div>
         )}
 
         {/* Description / Lead */}
         {article.description && (
-          <p className="text-xl text-muted-foreground leading-relaxed mb-8 border-l-4 border-primary pl-4">
+          <p className="text-xl text-muted-foreground leading-relaxed mb-6 border-l-4 border-primary pl-4">
             {article.description}
           </p>
         )}
 
-        {/* Content */}
-        {article.content && (
-          <article className="prose prose-lg dark:prose-invert max-w-none mb-8">
-            {article.content.split('\n').map((paragraph, index) => (
-              paragraph.trim() && <p key={index}>{paragraph}</p>
-            ))}
-          </article>
-        )}
-
-        {/* Read more at source */}
-        <div className="border-t border-border pt-8 mt-8">
+        {/* Primary CTA - Read full article */}
+        <div className="bg-muted/50 rounded-xl p-6 mb-8 border border-border">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <p className="text-sm text-muted-foreground mb-1">
-                Originele bron
+              <p className="font-medium mb-1">Lees het volledige artikel</p>
+              <p className="text-sm text-muted-foreground">
+                Dit is een samenvatting. Bezoek {article.source?.name} voor het complete verhaal.
               </p>
-              <p className="font-medium">{article.source?.name}</p>
             </div>
             <a
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex"
+              className="inline-flex shrink-0"
             >
-              <Button>
-                Lees volledig artikel
-                <ExternalLink className="w-4 h-4 ml-2" />
+              <Button size="lg" className="gap-2">
+                Lees bij {article.source?.name}
+                <ExternalLink className="w-4 h-4" />
               </Button>
             </a>
           </div>
+        </div>
+
+        {/* Copyright notice */}
+        <div className="text-xs text-muted-foreground bg-muted/30 rounded-lg p-4 mb-8">
+          <p>
+            📰 Dit artikel is afkomstig van <strong>{article.source?.name}</strong> en wordt hier getoond 
+            als samenvatting via hun publieke RSS-feed. Alle rechten behoren toe aan de oorspronkelijke 
+            uitgever. <a href={article.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
+              Bekijk het origineel →
+            </a>
+          </p>
         </div>
 
         {/* Related Articles */}
