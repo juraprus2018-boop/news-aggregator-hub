@@ -1,7 +1,9 @@
-import { Newspaper, Moon, Sun, Flame, ExternalLink } from 'lucide-react'
+import { Newspaper, Moon, Sun, Flame, ExternalLink, Search, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 import { useBreakingNews } from '@/hooks/useArticles'
+import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import {
   Popover,
   PopoverContent,
@@ -13,6 +15,9 @@ import { nl } from 'date-fns/locale'
 
 export function Header() {
   const [isDark, setIsDark] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
+  const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
   const { data: breakingNews, isLoading } = useBreakingNews()
 
   useEffect(() => {
@@ -20,9 +25,29 @@ export function Header() {
     setIsDark(isDarkMode)
   }, [])
 
+  // Sync search input with URL params
+  useEffect(() => {
+    const urlSearch = searchParams.get('search') || ''
+    setSearchValue(urlSearch)
+  }, [searchParams])
+
   const toggleTheme = () => {
     document.documentElement.classList.toggle('dark')
     setIsDark(!isDark)
+  }
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchValue.trim()) {
+      navigate(`/?search=${encodeURIComponent(searchValue.trim())}`)
+    } else {
+      navigate('/')
+    }
+  }
+
+  const clearSearch = () => {
+    setSearchValue('')
+    navigate('/')
   }
 
   const todaysNews = breakingNews?.filter(article => {
@@ -34,18 +59,43 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="flex h-16 items-center justify-between px-4 md:px-6 gap-4">
+        <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity shrink-0">
           <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground">
             <Newspaper className="w-5 h-5" />
           </div>
-          <div>
+          <div className="hidden sm:block">
             <h1 className="text-xl font-bold tracking-tight">GigaNieuws</h1>
             <p className="text-xs text-muted-foreground">Al het nieuws, één plek</p>
           </div>
-        </div>
+        </Link>
 
-        <div className="flex items-center gap-2">
+        {/* Search bar */}
+        <form onSubmit={handleSearch} className="flex-1 max-w-md">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Zoeken in nieuws..."
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className="pl-9 pr-9 w-full"
+            />
+            {searchValue && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                onClick={clearSearch}
+                className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            )}
+          </div>
+        </form>
+
+        <div className="flex items-center gap-2 shrink-0">
           <Popover>
             <PopoverTrigger asChild>
               <Button 
@@ -54,7 +104,7 @@ export function Header() {
                 className="gap-2 bg-destructive hover:bg-destructive/90 text-destructive-foreground"
               >
                 <Flame className="w-4 h-4" />
-                <span className="hidden sm:inline">Belangrijk Nieuws</span>
+                <span className="hidden sm:inline">Belangrijk</span>
                 {todaysNews.length > 0 && (
                   <Badge variant="secondary" className="ml-1 bg-white/20 text-white text-xs px-1.5">
                     {todaysNews.length}
