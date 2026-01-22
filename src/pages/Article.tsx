@@ -13,6 +13,7 @@ import { MainLayout } from '@/components/layout/MainLayout'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import { CommentList } from '@/components/news/CommentList'
 import placeholderNews from '@/assets/placeholder-news.jpg'
 import {
   Breadcrumb,
@@ -227,6 +228,11 @@ export default function Article() {
               Bekijk het origineel →
             </a>
           </p>
+        </div>
+
+        {/* Comments Section */}
+        <div className="border-t border-border pt-8 mb-8">
+          <CommentList articleId={article.id} />
         </div>
 
         {/* Related Articles */}
