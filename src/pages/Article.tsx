@@ -92,7 +92,7 @@ export default function Article() {
       />
       <ArticleJsonLd article={article} url={currentUrl} />
       
-      <main className="container py-8 max-w-4xl">
+      <main className="container py-4 md:py-8 px-3 md:px-4 max-w-4xl">
         {/* Breadcrumb */}
         <Breadcrumb className="mb-6">
           <BreadcrumbList>

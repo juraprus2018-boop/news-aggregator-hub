@@ -16,7 +16,7 @@ export function MainLayout({ children, showSidebar = true }: MainLayoutProps) {
       <Header />
       
       {/* Content area */}
-      <div className="container flex flex-1 py-8 gap-8">
+      <div className="container flex flex-1 py-4 md:py-8 gap-4 md:gap-8 px-3 md:px-4">
         {/* Sidebar for desktop */}
         {showSidebar && <AppSidebar />}
         
