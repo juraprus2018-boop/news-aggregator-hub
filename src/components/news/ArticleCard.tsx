@@ -1,10 +1,10 @@
+import { Link } from 'react-router-dom'
 import { formatDistanceToNow } from 'date-fns'
 import { nl } from 'date-fns/locale'
-import { ExternalLink, MapPin } from 'lucide-react'
+import { ChevronRight, MapPin } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import type { Article } from '@/types/news'
-
 const categoryColors: Record<string, string> = {
   nederland: 'bg-orange-500/90 hover:bg-orange-500',
   internationaal: 'bg-blue-500/90 hover:bg-blue-500',
@@ -18,10 +18,8 @@ interface ArticleCardProps {
 
 export function ArticleCard({ article }: ArticleCardProps) {
   return (
-    <a
-      href={article.url}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      to={`/artikel/${article.id}`}
       className="group block"
     >
       <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card border-border/50">
@@ -79,10 +77,10 @@ export function ArticleCard({ article }: ArticleCardProps) {
                 </>
               )}
             </div>
-            <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
         </div>
       </Card>
-    </a>
+    </Link>
   )
 }
