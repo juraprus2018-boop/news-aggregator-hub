@@ -19,7 +19,7 @@ interface ArticleCardProps {
 export function ArticleCard({ article }: ArticleCardProps) {
   return (
     <Link
-      to={`/artikel/${article.id}`}
+      to={`/artikel/${article.slug || article.id}`}
       className="group block"
     >
       <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card border-border/50">

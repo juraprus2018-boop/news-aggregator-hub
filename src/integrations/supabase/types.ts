@@ -46,6 +46,7 @@ export type Database = {
           image_url: string | null
           is_breaking: boolean
           published_at: string | null
+          slug: string | null
           source_id: string
           title: string
           url: string
@@ -60,6 +61,7 @@ export type Database = {
           image_url?: string | null
           is_breaking?: boolean
           published_at?: string | null
+          slug?: string | null
           source_id: string
           title: string
           url: string
@@ -74,6 +76,7 @@ export type Database = {
           image_url?: string | null
           is_breaking?: boolean
           published_at?: string | null
+          slug?: string | null
           source_id?: string
           title?: string
           url?: string
@@ -207,6 +210,7 @@ export type Database = {
     }
     Functions: {
       admin_exists: { Args: never; Returns: boolean }
+      generate_slug: { Args: { title: string }; Returns: string }
     }
     Enums: {
       [_ in never]: never

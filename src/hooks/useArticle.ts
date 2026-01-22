@@ -2,11 +2,13 @@ import { useQuery } from '@tanstack/react-query'
 import { supabase } from '@/integrations/supabase/client'
 import type { Article } from '@/types/news'
 
-export function useArticle(id: string | undefined) {
+type ArticleWithSource = Article & { source: { id: string; name: string; url: string } }
+
+export function useArticle(slug: string | undefined) {
   return useQuery({
-    queryKey: ['article', id],
+    queryKey: ['article', slug],
     queryFn: async () => {
-      if (!id) throw new Error('No article ID provided')
+      if (!slug) throw new Error('No article slug provided')
       
       const { data, error } = await supabase
         .from('articles')
@@ -14,15 +16,15 @@ export function useArticle(id: string | undefined) {
           *,
           source:sources(id, name, url)
         `)
-        .eq('id', id)
+        .eq('slug', slug)
         .maybeSingle()
 
       if (error) throw error
       if (!data) throw new Error('Article not found')
       
-      return data as Article & { source: { id: string; name: string; url: string } }
+      return data as unknown as ArticleWithSource
     },
-    enabled: !!id,
+    enabled: !!slug,
     staleTime: 1000 * 60 * 5, // 5 minutes
   })
 }
