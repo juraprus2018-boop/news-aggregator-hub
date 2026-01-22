@@ -7,6 +7,7 @@ import { useArticle } from '@/hooks/useArticle'
 import { SEOHead } from '@/components/seo/SEOHead'
 import { ArticleJsonLd } from '@/components/seo/ArticleJsonLd'
 import { RelatedArticles } from '@/components/news/RelatedArticles'
+import { ShareButtons } from '@/components/news/ShareButtons'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -146,6 +147,15 @@ export default function Article() {
               </time>
             </div>
           )}
+        </div>
+
+        {/* Share Buttons */}
+        <div className="mb-6">
+          <ShareButtons 
+            url={currentUrl} 
+            title={article.title} 
+            description={article.description || undefined}
+          />
         </div>
 
         {/* Regions */}
