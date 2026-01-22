@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale'
@@ -12,6 +13,7 @@ import { MainLayout } from '@/components/layout/MainLayout'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import placeholderNews from '@/assets/placeholder-news.jpg'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -38,6 +40,7 @@ const categoryLabels: Record<string, string> = {
 export default function Article() {
   const { slug } = useParams<{ slug: string }>()
   const { data: article, isLoading, error } = useArticle(slug)
+  const [imgError, setImgError] = useState(false)
   
   const currentUrl = typeof window !== 'undefined' 
     ? window.location.href 
@@ -168,21 +171,22 @@ export default function Article() {
         )}
 
         {/* Hero Image with source attribution */}
-        {article.image_url && (
-          <div className="relative rounded-xl overflow-hidden mb-6">
-            <img
-              src={article.image_url}
-              alt={article.title}
-              className="w-full h-auto max-h-[500px] object-contain bg-muted"
-              style={{ imageRendering: 'auto' }}
-            />
+        <div className="relative rounded-xl overflow-hidden mb-6">
+          <img
+            src={imgError || !article.image_url ? placeholderNews : article.image_url}
+            alt={article.title}
+            className="w-full h-auto max-h-[500px] object-contain bg-muted"
+            style={{ imageRendering: 'auto' }}
+            onError={() => setImgError(true)}
+          />
+          {article.image_url && !imgError && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
               <p className="text-white/80 text-xs">
                 📷 Afbeelding: {article.source?.name}
               </p>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Description / Lead */}
         {article.description && (
