@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Newspaper, LogOut, Home, Settings, Activity } from 'lucide-react'
+import { Newspaper, LogOut, Home, Settings, Activity, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useAdminCheck } from '@/hooks/useAdminCheck'
@@ -8,6 +8,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { CrawlStats } from '@/components/admin/CrawlStats'
 import { CrawlLogsTable } from '@/components/admin/CrawlLogsTable'
 import { SourcesTable } from '@/components/admin/SourcesTable'
+import { CommentsTable } from '@/components/admin/CommentsTable'
 import { useToast } from '@/hooks/use-toast'
 
 export default function Admin() {
@@ -87,6 +88,10 @@ export default function Admin() {
               <Settings className="w-4 h-4" />
               Bronnen
             </TabsTrigger>
+            <TabsTrigger value="comments" className="flex items-center gap-2">
+              <MessageCircle className="w-4 h-4" />
+              Reacties
+            </TabsTrigger>
             <TabsTrigger value="logs" className="flex items-center gap-2">
               <Activity className="w-4 h-4" />
               Crawl Logs
@@ -95,6 +100,10 @@ export default function Admin() {
 
           <TabsContent value="sources">
             <SourcesTable />
+          </TabsContent>
+
+          <TabsContent value="comments">
+            <CommentsTable />
           </TabsContent>
 
           <TabsContent value="logs">
