@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Header } from '@/components/news/Header'
 import { HeroSection } from '@/components/news/HeroSection'
 import { FilterBar } from '@/components/news/FilterBar'
 import { ArticleGrid } from '@/components/news/ArticleGrid'
@@ -58,22 +57,19 @@ const Index = () => {
 
   return (
     <MainLayout>
-      <div className="min-h-screen bg-background flex flex-col">
-        <Header />
-        <main className="container py-8 flex-1">
-          <HeroSection />
-          <FilterBar
-            selectedCategory={activeCategory}
-            selectedRegion={urlRegion}
-            searchQuery={search}
-            onCategoryChange={handleCategoryChange}
-            onRegionChange={handleRegionChange}
-            onSearchChange={setSearch}
-          />
-          <ArticleGrid category={activeCategory} region={urlRegion} search={search} />
-        </main>
-        <Footer />
+      <div className="flex flex-col flex-1">
+        <HeroSection />
+        <FilterBar
+          selectedCategory={activeCategory}
+          selectedRegion={urlRegion}
+          searchQuery={search}
+          onCategoryChange={handleCategoryChange}
+          onRegionChange={handleRegionChange}
+          onSearchChange={setSearch}
+        />
+        <ArticleGrid category={activeCategory} region={urlRegion} search={search} />
       </div>
+      <Footer />
     </MainLayout>
   )
 }

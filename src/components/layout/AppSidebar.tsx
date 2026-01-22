@@ -37,8 +37,11 @@ export function AppSidebar() {
   const currentRegion = searchParams.get('region')
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border/40">
-      <SidebarContent className="pt-4">
+    <Sidebar 
+      collapsible="icon" 
+      className="border-r border-border/40 bg-muted/30 rounded-lg shrink-0"
+    >
+      <SidebarContent className="py-4">
         {/* Categories */}
         <SidebarGroup>
           <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground font-semibold px-3">
