@@ -14,9 +14,15 @@ const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [search, setSearch] = useState('')
 
-  // Get category and region from URL params
+  // Get category, region and search from URL params
   const urlCategory = searchParams.get('category') as Category | null
   const urlRegion = searchParams.get('region') || undefined
+  const urlSearch = searchParams.get('search') || ''
+
+  // Sync search state with URL
+  useEffect(() => {
+    setSearch(urlSearch)
+  }, [urlSearch])
 
   // Set initial category based on detected location (only if no URL param)
   const [initialized, setInitialized] = useState(false)
