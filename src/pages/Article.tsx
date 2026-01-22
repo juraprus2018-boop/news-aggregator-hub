@@ -6,6 +6,7 @@ import { Header } from '@/components/news/Header'
 import { useArticle } from '@/hooks/useArticle'
 import { SEOHead } from '@/components/seo/SEOHead'
 import { ArticleJsonLd } from '@/components/seo/ArticleJsonLd'
+import { RelatedArticles } from '@/components/news/RelatedArticles'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -208,6 +209,13 @@ export default function Article() {
             </a>
           </div>
         </div>
+
+        {/* Related Articles */}
+        <RelatedArticles 
+          articleId={article.id} 
+          category={article.category}
+          regions={article.detected_regions || []}
+        />
 
         {/* Back button */}
         <div className="mt-12">
