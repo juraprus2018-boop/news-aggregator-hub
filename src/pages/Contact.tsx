@@ -34,7 +34,7 @@ export default function Contact() {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Contact"
-        description="Neem contact op met NewsFlow voor vragen, opmerkingen of verwijderingsverzoeken."
+        description="Neem contact op met GigaNieuws voor vragen, opmerkingen of verwijderingsverzoeken."
       />
       
       <Header />
@@ -103,8 +103,8 @@ export default function Contact() {
               </p>
               <p className="text-sm">
                 <strong>E-mail:</strong>{' '}
-                <a href="mailto:info@newsflow.nl" className="text-primary hover:underline">
-                  info@newsflow.nl
+                <a href="mailto:info@giganieuws.nl" className="text-primary hover:underline">
+                  info@giganieuws.nl
                 </a>
               </p>
             </div>
@@ -116,7 +116,7 @@ export default function Contact() {
                 wordt verwijderd? Vermeld in uw bericht:
               </p>
               <ul className="text-sm text-muted-foreground mt-2 list-disc list-inside space-y-1">
-                <li>De URL van het betreffende artikel op NewsFlow</li>
+                <li>De URL van het betreffende artikel op GigaNieuws</li>
                 <li>De originele bron/URL</li>
                 <li>Uw relatie tot de content</li>
               </ul>

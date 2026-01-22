@@ -10,7 +10,7 @@ export default function Disclaimer() {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Disclaimer"
-        description="Lees de disclaimer van NewsFlow. Informatie over onze nieuwsaggregator en de bronnen die wij gebruiken."
+        description="Lees de disclaimer van GigaNieuws. Informatie over onze nieuwsaggregator en de bronnen die wij gebruiken."
       />
       
       <Header />
@@ -30,9 +30,9 @@ export default function Disclaimer() {
             Laatst bijgewerkt: {new Date().toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
 
-          <h2>1. Wat is NewsFlow?</h2>
+          <h2>1. Wat is GigaNieuws?</h2>
           <p>
-            NewsFlow is een <strong>nieuwsaggregator</strong>. Dit betekent dat wij geen eigen 
+            GigaNieuws is een <strong>nieuwsaggregator</strong>. Dit betekent dat wij geen eigen 
             nieuwsartikelen schrijven of produceren. In plaats daarvan verzamelen wij 
             samenvattingen van nieuwsartikelen van diverse Nederlandse nieuwsbronnen via 
             hun publiek beschikbare RSS-feeds.
@@ -40,12 +40,12 @@ export default function Disclaimer() {
 
           <h2>2. Auteursrecht</h2>
           <p>
-            Alle artikelen, afbeeldingen, video's en andere content die op NewsFlow worden 
+            Alle artikelen, afbeeldingen, video's en andere content die op GigaNieuws worden 
             getoond, blijven volledig eigendom van de oorspronkelijke uitgevers en auteurs. 
             Wij claimen geen eigendomsrechten op deze content.
           </p>
           <p>
-            NewsFlow toont uitsluitend:
+            GigaNieuws toont uitsluitend:
           </p>
           <ul>
             <li>Titels en korte samenvattingen zoals aangeboden in RSS-feeds</li>
@@ -63,7 +63,7 @@ export default function Disclaimer() {
           <h2>4. Verwijderingsverzoeken</h2>
           <p>
             Bent u een uitgever of rechthebbende en wilt u dat uw content niet meer via 
-            NewsFlow wordt getoond? Neem dan contact met ons op. Wij zullen uw verzoek 
+            GigaNieuws wordt getoond? Neem dan contact met ons op. Wij zullen uw verzoek 
             zo snel mogelijk behandelen en de betreffende content verwijderen.
           </p>
 
@@ -79,7 +79,7 @@ export default function Disclaimer() {
 
           <h2>6. Geen commercieel hergebruik</h2>
           <p>
-            De geaggregeerde content op NewsFlow mag niet worden gekopieerd, herverdeeld 
+            De geaggregeerde content op GigaNieuws mag niet worden gekopieerd, herverdeeld 
             of commercieel worden hergebruikt zonder toestemming van de oorspronkelijke 
             rechthebbenden.
           </p>

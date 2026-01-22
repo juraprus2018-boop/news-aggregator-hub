@@ -40,7 +40,7 @@ export function Header() {
             <Newspaper className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-xl font-bold tracking-tight">NewsFlow</h1>
+            <h1 className="text-xl font-bold tracking-tight">GigaNieuws</h1>
             <p className="text-xs text-muted-foreground">Al het nieuws, één plek</p>
           </div>
         </div>

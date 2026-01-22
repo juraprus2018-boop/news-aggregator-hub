@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Cookie, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-const COOKIE_CONSENT_KEY = 'newsflow-cookie-consent'
+const COOKIE_CONSENT_KEY = 'giganieuws-cookie-consent'
 
 type ConsentStatus = 'pending' | 'accepted' | 'declined'
 
@@ -50,7 +50,7 @@ export function CookieBanner() {
                 <Cookie className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1">🍪 Cookies op NewsFlow</h3>
+                <h3 className="font-semibold mb-1">🍪 Cookies op GigaNieuws</h3>
                 <p className="text-sm text-muted-foreground">
                   Wij gebruiken alleen functionele cookies die nodig zijn voor de werking van de website. 
                   Geen tracking of advertentiecookies.{' '}
