@@ -36,8 +36,8 @@ const categoryLabels: Record<string, string> = {
 }
 
 export default function Article() {
-  const { id } = useParams<{ id: string }>()
-  const { data: article, isLoading, error } = useArticle(id)
+  const { slug } = useParams<{ slug: string }>()
+  const { data: article, isLoading, error } = useArticle(slug)
   
   const currentUrl = typeof window !== 'undefined' 
     ? window.location.href 
@@ -177,7 +177,8 @@ export default function Article() {
             <img
               src={article.image_url}
               alt={article.title}
-              className="w-full h-auto max-h-[400px] object-cover"
+              className="w-full h-auto max-h-[500px] object-contain bg-muted"
+              style={{ imageRendering: 'auto' }}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
               <p className="text-white/80 text-xs">

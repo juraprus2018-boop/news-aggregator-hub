@@ -9,6 +9,8 @@ interface UseRelatedArticlesOptions {
   limit?: number
 }
 
+type ArticleWithSource = Article & { source: { id: string; name: string; url: string } }
+
 export function useRelatedArticles({ 
   articleId, 
   category, 
@@ -43,7 +45,7 @@ export function useRelatedArticles({
 
       // If we have enough matches, return them
       if (regionMatches && regionMatches.length >= limit) {
-        return regionMatches as (Article & { source: { id: string; name: string; url: string } })[]
+        return regionMatches as unknown as ArticleWithSource[]
       }
 
       // Otherwise, fill with category matches
@@ -69,10 +71,10 @@ export function useRelatedArticles({
         return [
           ...(regionMatches || []),
           ...(categoryMatches || [])
-        ] as (Article & { source: { id: string; name: string; url: string } })[]
+        ] as unknown as ArticleWithSource[]
       }
 
-      return regionMatches as (Article & { source: { id: string; name: string; url: string } })[]
+      return regionMatches as unknown as ArticleWithSource[]
     },
     enabled: !!articleId,
     staleTime: 1000 * 60 * 5,

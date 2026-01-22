@@ -1,5 +1,6 @@
 export interface Article {
   id: string
+  slug: string | null
   source_id: string
   title: string
   description: string | null

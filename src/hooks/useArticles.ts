@@ -9,6 +9,8 @@ interface UseArticlesOptions {
   limit?: number
 }
 
+type ArticleWithSource = Article & { source: { id: string; name: string; url: string } }
+
 export function useArticles(options: UseArticlesOptions = {}) {
   const { category = 'all', region, search, limit = 50 } = options
 
@@ -42,7 +44,7 @@ export function useArticles(options: UseArticlesOptions = {}) {
       const { data, error } = await query
 
       if (error) throw error
-      return data as (Article & { source: { id: string; name: string; url: string } })[]
+      return data as unknown as ArticleWithSource[]
     },
     staleTime: 1000 * 60 * 2, // 2 minutes - refresh more often
     refetchInterval: 1000 * 60 * 2, // Auto-refetch every 2 minutes
@@ -64,7 +66,7 @@ export function useBreakingNews() {
         .limit(5)
 
       if (error) throw error
-      return data as (Article & { source: { id: string; name: string; url: string } })[]
+      return data as unknown as ArticleWithSource[]
     },
     staleTime: 1000 * 30, // 30 seconds
     refetchInterval: 1000 * 30, // Auto-refetch every 30 seconds for breaking news
@@ -88,7 +90,7 @@ export function useHeroArticles() {
         .limit(3)
 
       if (error) throw error
-      return data as (Article & { source: { id: string; name: string; url: string } })[]
+      return data as unknown as ArticleWithSource[]
     },
     staleTime: 1000 * 60 * 2,
     refetchInterval: 1000 * 60 * 2, // Auto-refetch every 2 minutes

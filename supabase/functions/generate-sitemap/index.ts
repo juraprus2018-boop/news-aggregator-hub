@@ -21,7 +21,7 @@ Deno.serve(async (req) => {
     // Fetch all articles
     const { data: articles, error } = await supabase
       .from('articles')
-      .select('id, title, published_at, updated_at')
+      .select('id, slug, title, published_at, updated_at')
       .order('published_at', { ascending: false })
       .limit(5000)
     
@@ -62,8 +62,9 @@ Deno.serve(async (req) => {
     // Add article URLs
     for (const article of articles || []) {
       const lastmod = article.updated_at || article.published_at || now
+      const articleSlug = article.slug || article.id
       sitemap += `  <url>
-    <loc>${SITE_URL}/artikel/${article.id}</loc>
+    <loc>${SITE_URL}/artikel/${articleSlug}</loc>
     <lastmod>${new Date(lastmod).toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>

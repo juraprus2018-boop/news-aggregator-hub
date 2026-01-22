@@ -22,7 +22,7 @@ const categoryColors: Record<string, string> = {
 
 function RelatedArticleCard({ article }: { article: Article & { source: { id: string; name: string; url: string } } }) {
   return (
-    <Link to={`/artikel/${article.id}`} className="group block">
+    <Link to={`/artikel/${article.slug || article.id}`} className="group block">
       <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 bg-card border-border/50">
         {article.image_url && (
           <div className="relative h-32 overflow-hidden">
