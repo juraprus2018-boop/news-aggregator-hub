@@ -91,6 +91,54 @@ export type Database = {
           },
         ]
       }
+      comments: {
+        Row: {
+          article_id: string
+          author_email: string
+          author_name: string
+          content: string
+          created_at: string
+          id: string
+          is_approved: boolean
+          parent_id: string | null
+        }
+        Insert: {
+          article_id: string
+          author_email: string
+          author_name: string
+          content: string
+          created_at?: string
+          id?: string
+          is_approved?: boolean
+          parent_id?: string | null
+        }
+        Update: {
+          article_id?: string
+          author_email?: string
+          author_name?: string
+          content?: string
+          created_at?: string
+          id?: string
+          is_approved?: boolean
+          parent_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comments_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "comments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       crawl_logs: {
         Row: {
           articles_added: number | null
