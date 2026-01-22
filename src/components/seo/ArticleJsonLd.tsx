@@ -17,12 +17,12 @@ export function ArticleJsonLd({ article, url }: ArticleJsonLdProps) {
     dateModified: article.published_at,
     author: {
       '@type': 'Organization',
-      name: article.source?.name || 'NewsFlow',
+      name: article.source?.name || 'GigaNieuws',
       url: article.source?.url,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'NewsFlow',
+      name: 'GigaNieuws',
       logo: {
         '@type': 'ImageObject',
         url: `${window.location.origin}/favicon.ico`,

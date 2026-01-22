@@ -21,7 +21,7 @@ export function SEOHead({
   author,
   section,
 }: SEOHeadProps) {
-  const siteName = 'NewsFlow'
+  const siteName = 'GigaNieuws'
   const fullTitle = `${title} | ${siteName}`
   const truncatedDescription = description.length > 155 
     ? description.substring(0, 152) + '...' 

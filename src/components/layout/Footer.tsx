@@ -14,10 +14,10 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Newspaper className="w-6 h-6 text-primary" />
-              <span className="font-bold text-xl">NewsFlow</span>
+              <span className="font-bold text-xl">GigaNieuws</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              NewsFlow is een nieuwsaggregator die het laatste nieuws uit Nederland 
+              GigaNieuws is een nieuwsaggregator die het laatste nieuws uit Nederland 
               verzamelt van betrouwbare bronnen. Wij creëren geen eigen content, 
               maar bieden een overzichtelijk platform om nieuws te ontdekken.
             </p>
@@ -77,12 +77,12 @@ export function Footer() {
 
         {/* Disclaimer */}
         <div className="bg-background/50 rounded-lg p-4 mb-8">
-          <h4 className="font-semibold text-sm mb-2">📰 Over NewsFlow</h4>
+          <h4 className="font-semibold text-sm mb-2">📰 Over GigaNieuws</h4>
           <p className="text-xs text-muted-foreground leading-relaxed">
-            NewsFlow is een nieuwsaggregator die artikelen verzamelt via publiek beschikbare 
+            GigaNieuws is een nieuwsaggregator die artikelen verzamelt via publiek beschikbare 
             RSS-feeds van Nederlandse nieuwsbronnen. Alle artikelen, afbeeldingen en content 
             blijven eigendom van de oorspronkelijke uitgevers. Wij tonen enkel samenvattingen 
-            en verwijzen altijd door naar de originele bron. Door gebruik te maken van NewsFlow 
+            en verwijzen altijd door naar de originele bron. Door gebruik te maken van GigaNieuws 
             stemt u in met ons privacybeleid. Voor vragen of verzoeken tot verwijdering kunt u 
             contact met ons opnemen.
           </p>
@@ -98,7 +98,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {currentYear} NewsFlow — Al het nieuws, één plek</p>
+          <p>© {currentYear} GigaNieuws — Al het nieuws, één plek</p>
           <p className="flex items-center gap-1">
             Een nieuwsaggregator, geen nieuwsproducent
           </p>

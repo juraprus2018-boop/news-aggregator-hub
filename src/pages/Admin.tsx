@@ -50,7 +50,7 @@ export default function Admin() {
               <Newspaper className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight">NewsFlow Admin</h1>
+              <h1 className="text-xl font-bold tracking-tight">GigaNieuws Admin</h1>
               <p className="text-xs text-muted-foreground">{user?.email}</p>
             </div>
           </div>

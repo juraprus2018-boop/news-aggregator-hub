@@ -5,7 +5,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-const SITE_URL = 'https://nieuwsflow.nl'
+const SITE_URL = 'https://giganieuws.nl'
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {

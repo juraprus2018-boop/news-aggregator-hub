@@ -10,7 +10,7 @@ export default function Privacy() {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Privacybeleid"
-        description="Lees het privacybeleid van NewsFlow. Wij respecteren uw privacy en leggen uit hoe wij omgaan met uw gegevens."
+        description="Lees het privacybeleid van GigaNieuws. Wij respecteren uw privacy en leggen uit hoe wij omgaan met uw gegevens."
       />
       
       <Header />
@@ -32,13 +32,13 @@ export default function Privacy() {
 
           <h2>1. Wie zijn wij?</h2>
           <p>
-            NewsFlow is een nieuwsaggregator die artikelen verzamelt van verschillende 
+            GigaNieuws is een nieuwsaggregator die artikelen verzamelt van verschillende 
             Nederlandse nieuwsbronnen via publiek beschikbare RSS-feeds. Wij creëren 
             geen eigen nieuwscontent.
           </p>
 
           <h2>2. Welke gegevens verzamelen wij?</h2>
-          <p>NewsFlow verzamelt minimale gegevens:</p>
+          <p>GigaNieuws verzamelt minimale gegevens:</p>
           <ul>
             <li><strong>Geen persoonlijke gegevens:</strong> Wij vragen niet om registratie of inloggegevens van bezoekers.</li>
             <li><strong>Technische gegevens:</strong> Standaard serverlogboeken kunnen IP-adressen en browserinformatie bevatten voor technische doeleinden.</li>
@@ -63,7 +63,7 @@ export default function Privacy() {
 
           <h2>5. Externe links</h2>
           <p>
-            NewsFlow bevat links naar externe nieuwsbronnen. Wanneer u op een link klikt 
+            GigaNieuws bevat links naar externe nieuwsbronnen. Wanneer u op een link klikt 
             naar een externe website, bent u onderworpen aan het privacybeleid van die website. 
             Wij zijn niet verantwoordelijk voor de privacypraktijken van externe websites.
           </p>

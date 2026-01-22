@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://nieuwsflow.nl/sitemap.xml
+Sitemap: https://giganieuws.nl/sitemap.xml
